@@ -1,5 +1,6 @@
 package me.fadcrepin.travelmantics.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -33,7 +34,7 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
     private ImageView imageDeal;
 
     public DealAdapter() {
-        //FirebaseUtil.openFbReference("traveldeals");
+
         mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase;
         mDatabaseReference = FirebaseUtil.mDatabaseReference;
         this.deals = FirebaseUtil.mDeals;
@@ -120,6 +121,8 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.DealViewHolder
             Intent intent = new Intent(view.getContext(), DealActivity.class);
             intent.putExtra("Deal", selectedDeal);
             view.getContext().startActivity(intent);
+
+
         }
 
         private void showImage(String url) {

@@ -27,6 +27,16 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+
+        FirebaseUtil.openFbReference("traveldeals", this);
+        RecyclerView rvDeals = (RecyclerView) findViewById(R.id.rvDeals);
+        final DealAdapter adapter = new DealAdapter();
+        rvDeals.setAdapter(adapter);
+        @SuppressLint("WrongConstant") LinearLayoutManager dealsLayoutManager =
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        rvDeals.setLayoutManager(dealsLayoutManager);
+        FirebaseUtil.attachListener();
+
     }
 
     @Override
@@ -41,8 +51,6 @@ public class ListActivity extends AppCompatActivity {
             insertMenu.setVisible(false);
         }
 
-
-
         return true;
     }
 
@@ -52,6 +60,7 @@ public class ListActivity extends AppCompatActivity {
             case R.id.insert_menu:
                 Intent intent = new Intent(this, DealActivity.class);
                 startActivity(intent);
+                finish();
                 return true;
             case R.id.logout_menu:
                 AuthUI.getInstance()

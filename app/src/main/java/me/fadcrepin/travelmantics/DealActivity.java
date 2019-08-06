@@ -163,8 +163,8 @@ public class DealActivity extends AppCompatActivity {
 
     }
     private void backToList() {
-        Intent intent = new Intent(this, ListActivity.class);
-        startActivity(intent);
+
+        finish();
     }
     private void clean() {
         txtTitle.setText("");

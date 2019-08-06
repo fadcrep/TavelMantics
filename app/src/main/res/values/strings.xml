@@ -5,7 +5,7 @@
     <string name="description_hint">Description</string>
     <string name="insert_new_deal">New Travel Deal</string>
     <string name="delete_menu">delete</string>
-    <string name="save_menu">save</string>
+    <string name="save_menu">SAVE</string>
     <string name="delete_deal">delete</string>
 
 </resources>
