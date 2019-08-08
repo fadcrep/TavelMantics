@@ -60,7 +60,6 @@ public class ListActivity extends AppCompatActivity {
             case R.id.insert_menu:
                 Intent intent = new Intent(this, DealActivity.class);
                 startActivity(intent);
-                finish();
                 return true;
             case R.id.logout_menu:
                 AuthUI.getInstance()
