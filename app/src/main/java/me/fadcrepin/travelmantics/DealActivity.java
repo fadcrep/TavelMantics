@@ -78,7 +78,6 @@ public class DealActivity extends AppCompatActivity {
                 return true;
             case R.id.delete_menu:
                 deleteDeal();
-                Toast.makeText(this, "Deal Deleted", Toast.LENGTH_LONG).show();
                 backToList();
                 return true;
             default:
@@ -140,25 +139,27 @@ public class DealActivity extends AppCompatActivity {
         }
     }
     private void deleteDeal() {
-        if (deal == null) {
+        if (deal.getId() == null) {
             Toast.makeText(this, "Please save the deal before deleting", Toast.LENGTH_SHORT).show();
             return;
-        }
-        mDatabaseReference.child(deal.getId()).removeValue();
-        Log.d("image name", deal.getImageName());
-        if(deal.getImageName() != null && deal.getImageName().isEmpty() == false) {
-            StorageReference picRef = FirebaseUtil.mStorage.getReference().child(deal.getImageName());
-            picRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    Log.d("Delete Image", "Image Successfully Deleted");
-                }
-            }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    Log.d("Delete Image", e.getMessage());
-                }
-            });
+        } else {
+            mDatabaseReference.child(deal.getId()).removeValue();
+            Log.d("image name", deal.getImageName());
+            if (deal.getImageName() != null && deal.getImageName().isEmpty() == false) {
+                StorageReference picRef = FirebaseUtil.mStorage.getReference().child(deal.getImageName());
+                picRef.delete().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("Delete Image", "Image Successfully Deleted");
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("Delete Image", e.getMessage());
+                    }
+                });
+            }
+            Toast.makeText(this, "Deal Deleted", Toast.LENGTH_LONG).show();
         }
 
     }
